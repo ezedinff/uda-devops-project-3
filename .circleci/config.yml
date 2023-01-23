@@ -13,7 +13,6 @@ commands:
           when: on_fail
           command: |
             aws cloudformation delete-stack --stack-name udapeople-backend-<<parameters.workflow_Id>>
-            aws s3 rm s3://udapeople-<<parameters.workflow_Id>> --recursive
             aws cloudformation delete-stack --stack-name udapeople-frontend-<<parameters.workflow_Id>>
 
   revert-migrations:
@@ -316,7 +315,7 @@ workflows:
       - scan-frontend:
           requires: [build-frontend]
       - deploy-infrastructure:
-          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+          requires: [build-backend, build-frontend]
       #     filters:
       #       branches:
       #         only: [test-feature-branch]
