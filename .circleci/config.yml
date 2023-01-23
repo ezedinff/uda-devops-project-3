@@ -494,11 +494,11 @@ workflows:
             - build-frontend
 
       ## INFRASTRUCTURE
-      # - deploy-infrastructure:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - deploy-infrastructure:
+          filters:
+            branches:
+              only:
+                - master
       # - configure-infrastructure:
       #     requires:
       #       - deploy-infrastructure
