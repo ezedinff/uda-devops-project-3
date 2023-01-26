@@ -226,7 +226,7 @@ jobs:
           command: |
             if grep -q "success" ~/project/backend/migrations.txt
             then
-              curl --insecure https://kvdb.io/ViWzkdySLpmD9TMMzU5Fzq/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
+              curl --insecure https://kvdb.io/MBYm8QqB69L9AjcPL7E82w/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
             fi
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
@@ -423,8 +423,8 @@ workflows:
           requires: [build-backend]
       - configure-infrastructure:
           requires: [add-prometheus-node-exporter]
-      # - run-migrations:
-      #     requires: [configure-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
       # - deploy-frontend:
       #     requires: [run-migrations]
       # - deploy-backend:
