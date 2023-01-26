@@ -170,7 +170,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - 'ab:52:25:68:df:4c:3a:d5:48:18:55:d8:f9:3b:df:de'
+            - '63:53:de:40:f4:c0:8c:56:3d:3a:ac:9e:11:5f:2c:94:c4:13:77:78'
       - run:
           name: Install dependencies
           command: |
@@ -418,11 +418,11 @@ workflows:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
             branches:
-              only: [master]
-      # - add-prometheus-node-exporter:
-      #     requires: [deploy-infrastructure]
-      # - configure-infrastructure:
-      #     requires: [add-prometheus-node-exporter]
+              only: [infra]
+      - add-prometheus-node-exporter:
+          requires: [build-backend]
+      - configure-infrastructure:
+          requires: [add-prometheus-node-exporter]
       # - run-migrations:
       #     requires: [configure-infrastructure]
       # - deploy-frontend:
