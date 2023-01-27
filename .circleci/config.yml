@@ -432,6 +432,6 @@ workflows:
       # # - smoke-test:
       # #     requires: [deploy-backend, deploy-frontend]
       - cloudfront-update:
-      #     requires: [smoke-test]
+          requires: []
       # - cleanup:
       #     requires: [cloudfront-update, add-prometheus-node-exporter]
