@@ -284,9 +284,8 @@ jobs:
           name: Deploy backend
           command: |
             cd backend
-            npm install -g yarn
-            yarn install
-            yarn run build
+            npm install
+            npm run build
             cd ..
             tar -C backend -czvf artifact.tar.gz .
             mkdir -p ~/project/.circleci/ansible/roles/deploy/files/
@@ -429,7 +428,7 @@ workflows:
       - deploy-frontend:
           requires: [deploy-infrastructure, run-migrations]
       - deploy-backend:
-          requires: [deploy-infrastructure, run-migrations]
+          requires: [run-migrations]
       - smoke-test:
           requires: [deploy-backend, deploy-frontend]
       - cloudfront-update:
