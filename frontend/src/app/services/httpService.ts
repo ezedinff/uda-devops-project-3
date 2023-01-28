@@ -10,8 +10,16 @@ export namespace HttpService {
 }
 
 export class HttpService {
+
+  public updateUrlToHttps(url: string): string {
+    if (url.startsWith('http://')) {
+      return url.replace('http://', 'https://');
+    }
+    return url;
+  }
+
   public async get(url: string, options?: HttpService.Options) {
-    let newUrl = url;
+    let newUrl = this.updateUrlToHttps(url);
 
     if (options && options.params) {
       const queryParams = this.getQueryStringFromParams(options.params);
@@ -28,7 +36,7 @@ export class HttpService {
   }
 
   public async post(url: string, data: any) {
-    const response = await fetch(url, {
+    const response = await fetch(this.updateUrlToHttps(url), {
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
@@ -45,7 +53,7 @@ export class HttpService {
   }
 
   public async put(url: string, data: any) {
-    const response = await fetch(url, {
+    const response = await fetch(this.updateUrlToHttps(url), {
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
@@ -62,7 +70,7 @@ export class HttpService {
   }
 
   public async delete(url: string) {
-    const response = await fetch(url, {
+    const response = await fetch(this.updateUrlToHttps(url), {
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
