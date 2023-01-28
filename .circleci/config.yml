@@ -170,7 +170,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - '63:53:de:40:f4:c0:8c:56:3d:3a:ac:9e:11:5f:2c:94:c4:13:77:78'
+            - 'da:d7:f3:a5:5a:f6:cf:4f:cc:1f:6d:0c:79:a9:b7:6c'
       - run:
           name: Install dependencies
           command: |
@@ -383,7 +383,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - 'ab:52:25:68:df:4c:3a:d5:48:18:55:d8:f9:3b:df:de'
+            - 'da:d7:f3:a5:5a:f6:cf:4f:cc:1f:6d:0c:79:a9:b7:6c'
       - run:
           name: Install dependencies
           command: |
@@ -435,3 +435,4 @@ workflows:
           requires: [smoke-test]
       # - cleanup:
       #     requires: [cloudfront-update, add-prometheus-node-exporter]
+
